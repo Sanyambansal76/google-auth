@@ -6,7 +6,7 @@ Quick start
 
 1. Move to project directory run command::
 
-    pip install git+https://github.com/technoarch-softwares/google-auth
+    `pip install git+https://github.com/technoarch-softwares/google-auth`
 
 2. Add "google_login" to your INSTALLED_APPS setting like this::
 

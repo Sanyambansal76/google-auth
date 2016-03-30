@@ -3,8 +3,8 @@ Name: google-auth
 Version: 0.1
 Summary: A simple Django app for google authentcation.
 Home-page: https://github.com/technoarch-softwares/google-auth
-Author: Pankul Mittal
-Author-email: mittal.pankul@gmail.com
+Author: Pankul Mittal, Sanyam Bansal
+Author-email: mittal.pankul@gmail.com, sanyambansal76@gmail.com
 License: BSD License
 Description: # google-auth
         Authentication using Google
@@ -14,7 +14,7 @@ Description: # google-auth
         
         1. Move to project directory run command::
         
-            pip install git+https://github.com/technoarch-softwares/google-auth
+            `pip install git+https://github.com/technoarch-softwares/google-auth`
         
         2. Add "google_login" to your INSTALLED_APPS setting like this::
         

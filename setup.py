@@ -20,8 +20,8 @@ setup(
     description='A simple Django app for google authentcation.',
     long_description=README,
     url='https://github.com/technoarch-softwares/google-auth',
-    author='Pankul Mittal',
-    author_email='mittal.pankul@gmail.com',
+    author='Pankul Mittal, Sanyam Bansal',
+    author_email='mittal.pankul@gmail.com, sanyambansal76@gmail.com',
     install_requires = install_requires,
     classifiers=[
         'Environment :: Web Environment',

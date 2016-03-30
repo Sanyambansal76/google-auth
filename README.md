@@ -33,8 +33,5 @@ Quick start
 
 5. It will create a table into database named by google_login_googleprofile.
 
-6. Start the development server and visit http://127.0.0.1:8000/admin/
-   to create a google_login (you'll need the Admin app enabled).
-
-7. Visit http://127.0.0.1:8000/google/ to participate in the google authentication.
+6. Visit http://127.0.0.1:8000/google/ to participate in the google authentication.
 

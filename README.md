@@ -32,9 +32,9 @@ Quick start
 
     `url(r'^google/', include('google_login.urls')),`
 
-4. Run `python manage.py migrate` to create the google_login models.
+4. Run `python manage.py migrate` to create the `google_login` models.
 
-5. It will create a table into database named by google_login_googleprofile.
+5. It will create a table into database named by `google_login_googleprofile`.
 
 6. Visit http://127.0.0.1:8000/google/ to participate in the google authentication.
 

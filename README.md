@@ -8,26 +8,26 @@ Quick start
 
     `pip install git+https://github.com/technoarch-softwares/google-auth`
 
-2. Add "google_login" to your INSTALLED_APPS setting like this::
+2. Add `"google_login"` to your `INSTALLED_APPS` setting like this::
 
-    INSTALLED_APPS = (
-        ...
-        'google_login',
-    )
+    `INSTALLED_APPS = (`
+    `    ...`
+    `    'google_login',`
+    `)`
     
-    SITE_URL = 'SITE DOMIAN' #like 'http://localhost:8000/'
+    `SITE_URL = 'SITE DOMIAN'` #like 'http://localhost:8000/'
     
-    ERROR_REDIRECT_URL = 'SITE LOGIN URL'
+    `ERROR_REDIRECT_URL = 'SITE LOGIN URL'`
     
-    GOOGLE_CLIENT_ID = 'GOOGLE API KEY'
+    `GOOGLE_CLIENT_ID = 'GOOGLE API KEY'`
     
-    GOOGLE_CLIENT_SECRET = 'GOOGLE API SECRET'
+    `GOOGLE_CLIENT_SECRET = 'GOOGLE API SECRET'`
     
-    GOOGLE_REDIRECT_URL = 'google/authentication'
+    `GOOGLE_REDIRECT_URL = 'google/authentication'`
 
 3. Include the google_login URLconf in your project urls.py like this::
 
-    url(r'^google/', include('google_login.urls')),
+    `url(r'^google/', include('google_login.urls')),`
 
 4. Run `python manage.py migrate` to create the google_login models.
 

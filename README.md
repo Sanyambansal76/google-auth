@@ -1,5 +1,7 @@
-# google-auth
-Authentication using Google
+# Google-auth
+Google-auth is an easy to setup google authentication/registration mechanism with support for the Django Framework
+
+
 
 Quick start
 -----------
@@ -18,7 +20,7 @@ Quick start
     
     )
     
-    `SITE_URL = 'SITE DOMIAN'` #like 'http://localhost:8000/'
+    `SITE_URL = 'SITE DOMIAN' #like 'http://localhost:8000/'`
     
     `ERROR_REDIRECT_URL = 'SITE LOGIN URL'`
     

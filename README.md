@@ -10,13 +10,13 @@ Quick start
 
 2. Add `"google_login"` to your `INSTALLED_APPS` setting like this::
 
-    `INSTALLED_APPS = (`
+    INSTALLED_APPS = (
     
-        `...,`
+        ...
     
-        `'google_login',`
+        'google_login',
     
-    `)`
+    )
     
     `SITE_URL = 'SITE DOMIAN'` #like 'http://localhost:8000/'
     

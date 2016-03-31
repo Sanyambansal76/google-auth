@@ -12,9 +12,9 @@ Quick start
 
     `INSTALLED_APPS = (`
     
-    `    ...`
+        `...`
     
-    `    'google_login',`
+        `'google_login',`
     
     `)`
     

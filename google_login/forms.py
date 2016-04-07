@@ -9,14 +9,14 @@ class EmailForm(forms.Form):
         super(EmailForm, self).__init__(*args, **kwargs)
         self.fields['email'].widget.attrs.update({'class': 'form-control input_width', 'required': 'required'})
 
-    def clean_email(self):
-        try:
-            existing_user = User.objects.get(email__iexact=self.cleaned_data['email'])
-            if existing_user:
-                self._errors["email"] = self.error_class(["An account already exists under this email address. Please use the forgot password function to log in."])
-        except User.MultipleObjectsReturned:
-            self._errors["email"] = self.error_class(["An account already exists under this email address. Please use the forgot password function to log in."])
-        except:
-            pass
+    #def clean_email(self):
+        #try:
+        #    existing_user = User.objects.get(email__iexact=self.cleaned_data['email'])
+        #    if existing_user:
+        #        self._errors["email"] = self.error_class(["An account already exists under this email address. Please use the forgot password function to log in."])
+        #except User.MultipleObjectsReturned:
+        #    self._errors["email"] = self.error_class(["An account already exists under this email address. Please use the forgot password function to log in."])
+        #except:
+        #    pass
 
-        return self.cleaned_data['email']
+        #return self.cleaned_data['email']

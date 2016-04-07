@@ -16,7 +16,7 @@ from django.contrib.auth.decorators import login_required
 
 from google_login.models import GoogleProfile
 from google_login.utils import create_username
-
+from google_login.forms import EmailForm
 
 google_redirect_url = settings.SITE_URL + settings.GOOGLE_REDIRECT_URL
 
@@ -107,15 +107,23 @@ def google_authentication(request):
         google_profile.save()
 
     except GoogleProfile.DoesNotExist:
-        try:
-            user = User.objects.get(email__iexact=profile_response_dict['email'])
-        except User.DoesNotExist:
-            user = User.objects.create_user(
-                email=profile_response_dict['email'],
-                username=create_username(profile_response_dict['given_name'].title() + ' ' + profile_response_dict['family_name'].title()),
-                first_name = profile_response_dict['given_name'].title(),
-                last_name = profile_response_dict['family_name'].title(),
-            )
+        if not 'email' in profile_response_dict:
+            request.session['profile_response_dict'] = profile_response_dict
+            request.session['profile_response_json'] = profile_response_json
+            request.session['member_id'] = member_id
+            request.session['access_token'] = access_token
+
+            return HttpResponseRedirect(reverse('facebook_email_form'))
+        else:
+            try:
+                user = User.objects.get(email__iexact=profile_response_dict['email'])
+            except User.DoesNotExist:
+                user = User.objects.create_user(
+                    email=profile_response_dict['email'],
+                    username=create_username(profile_response_dict['given_name'].title() + ' ' + profile_response_dict['family_name'].title()),
+                    first_name = profile_response_dict['given_name'].title(),
+                    last_name = profile_response_dict['family_name'].title(),
+                )
 
         GoogleProfile.objects.create(
             user=user,
@@ -128,3 +136,47 @@ def google_authentication(request):
     login(request, user)
 
     return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
+
+
+
+def gmail_email_form(request):
+    """
+    If email is not provided by the facebook, then an additional email form is there to store the email of the user
+    User can enter logged-in successfully
+    """
+    if not 'profile_response_dict' in request.session:
+        return HttpResponseRedirect('/')
+
+    if request.method == 'POST':
+        profile_response_dict = request.session['profile_response_dict']
+        form = EmailForm(request.POST)
+
+        if form.is_valid():
+            try:
+                user = User.objects.get(email__iexact=form.cleaned_data['email'])
+            except User.DoesNotExist:
+                user = User.objects.create_user(
+                    username=create_username(profile_response_dict['name']),
+                    email=form.cleaned_data['email'],
+                    first_name=profile_response_dict['name'],
+                )
+
+            GoogleProfile.objects.create(
+                user=user,
+                google_id=request.session['member_id'],
+                access_token=request.session['access_token'],
+                profile_data=request.session['profile_response_json'],
+            )
+
+            user.backend = "django.contrib.auth.backends.ModelBackend"
+            login(request, user)
+
+            return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
+    else:
+        form = EmailForm()
+
+    context = {
+        'form': form
+    }
+
+    return render_to_response('google_email_form.html', context, context_instance=RequestContext(request))

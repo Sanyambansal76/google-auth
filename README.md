@@ -45,3 +45,14 @@ Quick start
 
 8. Visit http://127.0.0.1:8000/google/ to participate in the google authentication.
 
+#Features
+
+1. Access the Google API, from Your website (Using OAuth)
+        
+2. Django User Registration (Convert Google user data into a user model)
+
+3. Store user data locally.
+
+4. Google GQL access
+
+5. Automated reauthentication (For expired tokens)

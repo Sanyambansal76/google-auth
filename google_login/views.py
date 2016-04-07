@@ -109,11 +109,10 @@ def google_authentication(request):
     except GoogleProfile.DoesNotExist:
         if not 'email' in profile_response_dict:
             request.session['profile_response_dict'] = profile_response_dict
-            request.session['profile_response_json'] = profile_response_json
             request.session['member_id'] = member_id
             request.session['access_token'] = access_token
 
-            return HttpResponseRedirect(reverse('facebook_email_form'))
+            return HttpResponseRedirect(reverse('google_email_form'))
         else:
             try:
                 user = User.objects.get(email__iexact=profile_response_dict['email'])
@@ -139,7 +138,7 @@ def google_authentication(request):
 
 
 
-def gmail_email_form(request):
+def google_email_form(request):
     """
     If email is not provided by the facebook, then an additional email form is there to store the email of the user
     User can enter logged-in successfully
@@ -165,7 +164,7 @@ def gmail_email_form(request):
                 user=user,
                 google_id=request.session['member_id'],
                 access_token=request.session['access_token'],
-                profile_data=request.session['profile_response_json'],
+                profile_data=json.dumps(profile_response_dict),
             )
 
             user.backend = "django.contrib.auth.backends.ModelBackend"

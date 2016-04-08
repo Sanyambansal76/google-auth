@@ -18,3 +18,4 @@ google_login/utils.py
 google_login/views.py
 google_login/migrations/0001_initial.py
 google_login/migrations/__init__.py
+google_login/templates/google_email_form.html
